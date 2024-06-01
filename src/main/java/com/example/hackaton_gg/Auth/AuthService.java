@@ -6,10 +6,10 @@ import com.example.hackaton_gg.Auth.Dto.AuthRegisterRequest;
 import com.example.hackaton_gg.Exceptions.UserAlreadyExistException;
 import com.example.hackaton_gg.Exceptions.IllegalArgumentException;
 import com.example.hackaton_gg.Exceptions.UsernameNotFoundException;
-import com.example.hackaton_gg.Usuario.Role;
-import com.example.hackaton_gg.Usuario.Usuario;
-import com.example.hackaton_gg.Usuario.UsuarioRepository;
-import com.example.hackaton_gg.config.JwtService;
+import com.example.hackaton_gg.ENTIDAD_1.Role;
+import com.example.hackaton_gg.ENTIDAD_1.Usuario;
+import com.example.hackaton_gg.ENTIDAD_1.UsuarioRepository;
+import com.example.hackaton_gg.Config.JwtService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,7 +54,7 @@ public class AuthService {
         if (user.isPresent()) throw new UserAlreadyExistException("Email is already registered");
 
         Usuario newUser = modelMapper.map(req, Usuario.class);
-        newUser.setContrasena(passwordEncoder.encode(req.getPassword()));
+        newUser.setPassword(passwordEncoder.encode(req.getPassword()));
         //newUser.setCreatedAt(LocalDateTime.now());
 
         if(req.getIsAdmin()) newUser.setRole(Role.ADMIN);
