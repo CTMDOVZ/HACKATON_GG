@@ -1,9 +1,9 @@
 package com.example.hackaton_gg.ENTIDAD_5;
 
-
 import com.example.hackaton_gg.ENTIDAD_1.Usuario;
 import com.example.hackaton_gg.ENTIDAD_2.Cancion;
 import jakarta.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,8 +11,9 @@ public class Playlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    private Long idPlaylist;
+    private String nombre;
+    private Date fechaDeCreacion;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -20,28 +21,36 @@ public class Playlist {
 
     @ManyToMany
     @JoinTable(
-            name = "playlist_songs",
+            name = "playlist_cancion",
             joinColumns = @JoinColumn(name = "playlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "song_id")
+            inverseJoinColumns = @JoinColumn(name = "cancion_id")
     )
-    private List<Cancion> songs;
+    private List<Cancion> canciones;
 
     // Getters y Setters
 
-    public Long getId() {
-        return id;
+    public Long getIdPlaylist() {
+        return idPlaylist;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdPlaylist(Long idPlaylist) {
+        this.idPlaylist = idPlaylist;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaDeCreacion() {
+        return fechaDeCreacion;
+    }
+
+    public void setFechaDeCreacion(Date fechaDeCreacion) {
+        this.fechaDeCreacion = fechaDeCreacion;
     }
 
     public Usuario getUsuario() {
@@ -52,11 +61,11 @@ public class Playlist {
         this.usuario = usuario;
     }
 
-    public List<Cancion> getSongs() {
-        return songs;
+    public List<Cancion> getCanciones() {
+        return canciones;
     }
 
-    public void setSongs(List<Cancion> songs) {
-        this.songs = songs;
+    public void setCanciones(List<Cancion> canciones) {
+        this.canciones = canciones;
     }
 }

@@ -1,52 +1,81 @@
 package com.example.hackaton_gg.ENTIDAD_2;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.hackaton_gg.ENTIDAD_3.Artista;
+import com.example.hackaton_gg.ENTIDAD_4.Album;
+import com.example.hackaton_gg.ENTIDAD_5.Playlist;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Cancion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String artist;
-    private String album;
+    private Long idSong;
+    private String titulo;
+    private int duracion;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artista artista;
+
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
+
+    @ManyToMany(mappedBy = "canciones")
+    private List<Playlist> listasDeReproduccion;
 
     // Getters y Setters
 
-    public Long getId() {
-        return id;
+    public Long getIdSong() {
+        return idSong;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdSong(Long idSong) {
+        this.idSong = idSong;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getArtist() {
-        return artist;
+    public int getDuracion() {
+        return duracion;
     }
 
-    public void setArtist(String artist) {
-        this.artist = artist;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
-    public String getAlbum() {
+    public Artista getArtista() {
+        return artista;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }
+
+    public Album getAlbum() {
         return album;
     }
 
-    public void setAlbum(String album) {
+    public void setAlbum(Album album) {
         this.album = album;
     }
+
+    public List<Playlist> getListasDeReproduccion() {
+        return listasDeReproduccion;
+    }
+
+    public void setListasDeReproduccion(List<Playlist> listasDeReproduccion) {
+        this.listasDeReproduccion = listasDeReproduccion;
+    }
+
+    // ...
 }

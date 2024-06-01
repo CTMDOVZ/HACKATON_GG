@@ -1,44 +1,49 @@
 package com.example.hackaton_gg.ENTIDAD_1;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.hackaton_gg.ENTIDAD_5.Playlist;
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String username;
+    private Long idUser;
+    private String nombre;
     private String email;
     private String password;
+    private Date fechaDeRegistro;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Playlist> listasDeReproduccion;
 
     // Constructor sin argumentos
     public Usuario() {}
 
     // Constructor con id
     public Usuario(Long id) {
-        this.id = id;
+        this.idUser = id;
     }
 
     // Getters y Setters
-    public Long getId() {
-        return id;
+
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEmail() {
@@ -56,4 +61,22 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Date getFechaDeRegistro() {
+        return fechaDeRegistro;
+    }
+
+    public void setFechaDeRegistro(Date fechaDeRegistro) {
+        this.fechaDeRegistro = fechaDeRegistro;
+    }
+
+    public List<Playlist> getListasDeReproduccion() {
+        return listasDeReproduccion;
+    }
+
+    public void setListasDeReproduccion(List<Playlist> listasDeReproduccion) {
+        this.listasDeReproduccion = listasDeReproduccion;
+    }
+
+    // ...
 }

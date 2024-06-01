@@ -1,33 +1,59 @@
 package com.example.hackaton_gg.ENTIDAD_3;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import com.example.hackaton_gg.ENTIDAD_2.Cancion;
+import com.example.hackaton_gg.ENTIDAD_4.Album;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Artista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    private Long idArtist;
+    private String nombre;
+
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cancion> canciones;
+
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Album> albums;
 
     // Getters y Setters
 
-    public Long getId() {
-        return id;
+    public Long getIdArtist() {
+        return idArtist;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdArtist(Long idArtist) {
+        this.idArtist = idArtist;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+    public List<Cancion> getCanciones() {
+        return canciones;
+    }
+
+    public void setCanciones(List<Cancion> canciones) {
+        this.canciones = canciones;
+    }
+
+    public List<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
+    }
+
+
+    // ...
 }
