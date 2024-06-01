@@ -1,62 +1,82 @@
 package com.example.hackaton_gg.ENTIDAD_1;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import com.example.hackaton_gg.ENTIDAD_5.Playlist;
+import jakarta.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-public class Usuario  implements UserDetails {
+public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String firstname;
-    private String lastname;
+    private Long idUser;
+    private String nombre;
     private String email;
     private String password;
-    private Role Role;
-    @Transient
-    String rolePrefix = "ROLE_";
+    private Date fechaDeRegistro;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(rolePrefix + Role.name()));
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Playlist> listasDeReproduccion;
+
+    // Constructor sin argumentos
+    public Usuario() {}
+
+    // Constructor con id
+    public Usuario(Long id) {
+        this.idUser = id;
     }
 
-    @Override
+    // Getters y Setters
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
-    @Override
-    public String getUsername() {
-        return this.email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public Date getFechaDeRegistro() {
+        return fechaDeRegistro;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public void setFechaDeRegistro(Date fechaDeRegistro) {
+        this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
+    public List<Playlist> getListasDeReproduccion() {
+        return listasDeReproduccion;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public void setListasDeReproduccion(List<Playlist> listasDeReproduccion) {
+        this.listasDeReproduccion = listasDeReproduccion;
     }
+
+    // ...
 }
