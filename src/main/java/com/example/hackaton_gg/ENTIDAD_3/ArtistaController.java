@@ -27,12 +27,14 @@ public class ArtistaController {
     public Artista getArtistaById(@PathVariable Long id) {
         return artistaService.findById(id).orElse(null);
     }
-
+/*
     @PutMapping("/{id}")
     public Artista updateArtista(@PathVariable Long id, @RequestBody Artista artista) {
         artista.setId(id);
         return artistaService.save(artista);
     }
+
+ */
 
     @DeleteMapping("/{id}")
     public void deleteArtista(@PathVariable Long id) {

@@ -23,7 +23,7 @@ public class PlaylistController {
     public Playlist getPlaylistById(@PathVariable Long playlist_id) {
         return playlistService.findById(playlist_id).orElse(null);
     }
-
+/*
     @PostMapping("/users/{user_id}/playlists")
     public Playlist createPlaylist(@PathVariable Long user_id, @RequestBody Playlist playlist) {
         // Implement logic to associate playlist with user
@@ -36,6 +36,8 @@ public class PlaylistController {
         playlist.setId(playlist_id);
         return playlistService.save(playlist);
     }
+
+ */
 
     @DeleteMapping("/{playlist_id}")
     public void deletePlaylist(@PathVariable Long playlist_id) {

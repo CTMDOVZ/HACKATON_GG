@@ -20,12 +20,14 @@ public class CancionController {
     public Cancion createCancion(@RequestBody Cancion cancion) {
         return cancionService.save(cancion);
     }
-
+/*
     @PutMapping("/{id}")
     public Cancion updateCancion(@PathVariable Long id, @RequestBody Cancion cancion) {
         cancion.setId(id);
         return cancionService.save(cancion);
     }
+
+ */
 
     @DeleteMapping("/{id}")
     public void deleteCancion(@PathVariable Long id) {

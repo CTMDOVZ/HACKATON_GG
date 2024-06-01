@@ -26,12 +26,14 @@ public class AlbumController {
     public Album getAlbumById(@PathVariable Long id) {
         return albumService.findById(id).orElse(null);
     }
-
+/*
     @PutMapping("/{id}")
     public Album updateAlbum(@PathVariable Long id, @RequestBody Album album) {
         album.setId(id);
         return albumService.save(album);
     }
+
+ */
 
     @DeleteMapping("/{id}")
     public void deleteAlbum(@PathVariable Long id) {

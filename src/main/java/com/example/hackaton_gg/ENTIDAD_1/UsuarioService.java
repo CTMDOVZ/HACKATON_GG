@@ -1,6 +1,9 @@
 package com.example.hackaton_gg.ENTIDAD_1;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +14,16 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    ModelMapper modelMapper;
 
-    public Usuario register(Usuario usuario) {
+    public UserDetailsService userDetailsService() {
+        return username -> usuarioRepository
+                .findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 

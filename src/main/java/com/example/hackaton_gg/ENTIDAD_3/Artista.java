@@ -17,9 +17,6 @@ public class Artista {
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cancion> canciones;
 
-    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Album> albums;
-
     // Getters y Setters
 
     public Long getIdArtist() {
@@ -46,13 +43,6 @@ public class Artista {
         this.canciones = canciones;
     }
 
-    public List<Album> getAlbums() {
-        return albums;
-    }
-
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
-    }
 
 
     // ...

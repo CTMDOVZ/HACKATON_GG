@@ -22,9 +22,8 @@ public class Playlist {
     @ManyToMany
     @JoinTable(
             name = "playlist_cancion",
-            joinColumns = @JoinColumn(name = "playlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "cancion_id")
-    )
+            joinColumns = @JoinColumn(name = "idPlaylist"),
+            inverseJoinColumns = @JoinColumn(name = "idCancion"))
     private List<Cancion> canciones;
 
     // Getters y Setters

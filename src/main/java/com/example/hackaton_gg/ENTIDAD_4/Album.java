@@ -16,10 +16,6 @@ public class Album {
     private String nombre;
     private Date fechaDeLanzamiento;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artista artista;
-
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cancion> canciones;
 
@@ -49,13 +45,6 @@ public class Album {
         this.fechaDeLanzamiento = fechaDeLanzamiento;
     }
 
-    public Artista getArtista() {
-        return artista;
-    }
-
-    public void setArtista(Artista artista) {
-        this.artista = artista;
-    }
 
     public List<Cancion> getCanciones() {
         return canciones;
