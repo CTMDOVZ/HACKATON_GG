@@ -9,4 +9,5 @@ public class AuthRegisterRequest {
     String email;
     String password;
     Boolean isAdmin;
+    //xd
 }
