@@ -1,4 +1,4 @@
 package com.example.hackaton_gg.ENTIDAD_4;
-//H
-public class Entidad4 {
+
+public class AlbumRepository {
 }
